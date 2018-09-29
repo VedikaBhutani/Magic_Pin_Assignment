@@ -1,0 +1,140 @@
+package com.androidwave.exoplayer.adapter;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.androidwave.exoplayer.R;
+import com.androidwave.exoplayer.model.VideoInfo;
+import com.androidwave.exoplayer.ui.BaseViewHolder;
+
+import java.util.List;
+import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+
+    public static final int VIEW_TYPE_EMPTY = 0;
+    public static final int VIEW_TYPE_NORMAL = 1;
+
+    private Callback mCallback;
+    private List<VideoInfo> mInfoList;
+
+    public VideoRecyclerViewAdapter(List<VideoInfo> infoList) {
+        mInfoList = infoList;
+    }
+
+    public void setCallback(Callback callback) {
+        mCallback = callback;
+    }
+
+    @NonNull
+    @Override
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case VIEW_TYPE_NORMAL:
+                return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false));
+            case VIEW_TYPE_EMPTY:
+                return new EmptyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_view, parent, false));
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        holder.onBind(position);
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mInfoList != null && mInfoList.size() > 0) {
+            return VIEW_TYPE_NORMAL;
+        } else {
+            return VIEW_TYPE_EMPTY;
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        if (mInfoList != null && mInfoList.size() > 0) {
+            return mInfoList.size();
+        } else {
+            return 1;
+        }
+    }
+
+    public void addItems(List<VideoInfo> videoInfoList) {
+        mInfoList = videoInfoList;
+        notifyDataSetChanged();
+    }
+
+
+    public interface Callback {
+        void onRepoEmptyViewRetryClick();
+    }
+
+    public class ViewHolder extends BaseViewHolder {
+//        @BindView(R.id.textWaveTitle)
+//        TextView textWaveTitle;
+//        @BindView(R.id.imageButtonShare)
+//        ImageView imageButtonShare;
+//        @BindView(R.id.textViewOpinionCount)
+//        TextView textViewOpinionCount;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        protected void clear() {
+
+        }
+
+        public void onBind(int position) {
+            super.onBind(position);
+
+            VideoInfo videoInfo = mInfoList.get(position);
+
+        }
+    }
+
+    public class EmptyViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.btn_retry)
+        Button retryButton;
+
+        @BindView(R.id.tv_message)
+        TextView messageTextView;
+
+        public EmptyViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            itemView.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected void clear() {
+
+        }
+
+        @OnClick(R.id.btn_retry)
+        void onRetryClick() {
+            if (mCallback != null)
+                mCallback.onRepoEmptyViewRetryClick();
+        }
+    }
+}
