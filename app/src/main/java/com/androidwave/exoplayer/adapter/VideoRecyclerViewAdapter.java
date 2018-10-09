@@ -1,24 +1,22 @@
 package com.androidwave.exoplayer.adapter;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidwave.exoplayer.R;
 import com.androidwave.exoplayer.model.VideoInfo;
 import com.androidwave.exoplayer.ui.BaseViewHolder;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,13 +85,23 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
         void onRepoEmptyViewRetryClick();
     }
 
+    public void onRelease() {
+        if (mInfoList != null) {
+            mInfoList.clear();
+            mInfoList = null;
+        }
+    }
+
     public class ViewHolder extends BaseViewHolder {
-//        @BindView(R.id.textWaveTitle)
-//        TextView textWaveTitle;
-//        @BindView(R.id.imageButtonShare)
-//        ImageView imageButtonShare;
-//        @BindView(R.id.textViewOpinionCount)
-//        TextView textViewOpinionCount;
+        @BindView(R.id.textViewTitle)
+        TextView textViewTitle;
+        @BindView(R.id.userHandle)
+        TextView userHandle;
+        @BindView(R.id.video_layout)
+        public FrameLayout videoLayout;
+        @BindView(R.id.cover)
+        ImageView mCover;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +116,10 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
             super.onBind(position);
 
             VideoInfo videoInfo = mInfoList.get(position);
+            textViewTitle.setText(videoInfo.getTitle());
+            Glide.with(itemView.getContext())
+                    .load(videoInfo.getCoverUrl()).apply(new RequestOptions().placeholder(R.drawable.ic_user).error(R.drawable.ic_user))
+                    .into(mCover);
 
         }
     }

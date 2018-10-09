@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.FrameLayout;
 
+import com.androidwave.exoplayer.R;
 import com.androidwave.exoplayer.model.VideoInfo;
 import com.androidwave.exoplayer.utils.VideoPlayerConfig;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -166,13 +168,14 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
             playPosition = -1;
             return;
         }
-     //   holder.itemView.addView(videoSurfaceView);
+        FrameLayout frameLayout = holder.itemView.findViewById(R.id.video_layout);
+        frameLayout.addView(videoSurfaceView);
         addedVideo = true;
         rowParent = holder.itemView;
         videoSurfaceView.requestFocus();
         // Bind the player to the view.
         videoSurfaceView.setPlayer(player);
-        float currentvolume = player.getVolume();
+       // float currentvolume = player.getVolume();
         // Measures bandwidth during playback. Can be null if not required.
         DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
         // Produces DataSource instances through which media data is loaded.
@@ -354,7 +357,7 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
     public void onRestartPlayer() {
         if (videoSurfaceView == null) {
             playPosition = -1;
-        //    videoSurfaceView = PlayerView.getInstance(appContext);
+            //    videoSurfaceView = PlayerView.getInstance(appContext);
             playVideo();
         }
     }

@@ -4,6 +4,7 @@ public class VideoInfo {
     private int mId;
     private String mTitle;
     private String mUrl;
+    private String mCoverUrl;
 
     public int getId() {
         return mId;
@@ -27,5 +28,13 @@ public class VideoInfo {
 
     public void setUrl(String mUrl) {
         this.mUrl = mUrl;
+    }
+
+    public String getCoverUrl() {
+        return mCoverUrl;
+    }
+
+    public void setCoverUrl(String mCoverUrl) {
+        this.mCoverUrl = mCoverUrl;
     }
 }
