@@ -5,6 +5,15 @@ public class VideoInfo {
     private String mTitle;
     private String mUrl;
     private String mCoverUrl;
+    private String mUserHandle;
+
+    public String getUserHandle() {
+        return mUserHandle;
+    }
+
+    public void setUserHandle(String mUserHandle) {
+        this.mUserHandle = mUserHandle;
+    }
 
     public int getId() {
         return mId;

@@ -1,8 +1,10 @@
 package com.androidwave.exoplayer;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.androidwave.exoplayer.adapter.VideoRecyclerViewAdapter;
 import com.androidwave.exoplayer.model.VideoInfo;
 import com.androidwave.exoplayer.ui.ExoPlayerVideoRecyclerView;
+import com.androidwave.exoplayer.utils.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewFeed.setVideoInfoList(videoInfoList);
         mAdapter = new VideoRecyclerViewAdapter(videoInfoList);
         recyclerViewFeed.setLayoutManager(new LinearLayoutManager(this, VERTICAL, false));
+        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider_drawable);
+        recyclerViewFeed.addItemDecoration(new DividerItemDecoration(dividerDrawable));
         recyclerViewFeed.setItemAnimator(new DefaultItemAnimator());
         recyclerViewFeed.setAdapter(mAdapter);
 
@@ -55,32 +60,37 @@ public class MainActivity extends AppCompatActivity {
     private void prepareVideoList() {
         VideoInfo videoInfo = new VideoInfo();
         videoInfo.setId(1);
-        videoInfo.setTitle("Google drops $10bn battle for Pentagon data contract");
-        videoInfo.setCoverUrl("https://ichef.bbci.co.uk/news/320/cpsprodpb/AAA7/production/_103778634_cloud.jpg");
+        videoInfo.setUserHandle("@h.pandya");
+        videoInfo.setTitle("Do you think the concept of marriage will no longer exist in the future?");
+        videoInfo.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
         videoInfo.setUrl("https://androidwave.com/media/androidwave-video-1.mp4");
 
         VideoInfo videoInfo2 = new VideoInfo();
         videoInfo2.setId(2);
-        videoInfo2.setTitle("Google drops $10bn battle for Pentagon data contract");
-        videoInfo2.setCoverUrl("https://ichef.bbci.co.uk/news/320/cpsprodpb/AAA7/production/_103778634_cloud.jpg");
+        videoInfo2.setUserHandle("@hardik.patel");
+        videoInfo2.setTitle("If my future husband doesn't cook food as good as my mother should I scold him?");
+        videoInfo2.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
         videoInfo2.setUrl("https://androidwave.com/media/androidwave-video-2.mp4");
 
         VideoInfo videoInfo3 = new VideoInfo();
         videoInfo3.setId(3);
-        videoInfo3.setTitle("Google drops $10bn battle for Pentagon data contract");
-        videoInfo3.setCoverUrl("https://ichef.bbci.co.uk/news/320/cpsprodpb/AAA7/production/_103778634_cloud.jpg");
+        videoInfo3.setUserHandle("@arun.gandhi");
+        videoInfo3.setTitle("Give your opinion about the Ayodhya temple controversy.");
+        videoInfo3.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
         videoInfo3.setUrl("https://androidwave.com/media/androidwave-video-3.mp4");
 
         VideoInfo videoInfo4 = new VideoInfo();
         videoInfo4.setId(4);
-        videoInfo4.setTitle("Google drops $10bn battle for Pentagon data contract");
-        videoInfo4.setCoverUrl("https://ichef.bbci.co.uk/news/320/cpsprodpb/AAA7/production/_103778634_cloud.jpg");
+        videoInfo4.setUserHandle("@sachin.patel");
+        videoInfo4.setTitle("When did kama founders find sex offensive to Indian traditions");
+        videoInfo4.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
         videoInfo4.setUrl("https://androidwave.com/media/androidwave-video-6.mp4");
 
         VideoInfo videoInfo5 = new VideoInfo();
         videoInfo5.setId(5);
-        videoInfo5.setTitle("Google drops $10bn battle for Pentagon data contract");
-        videoInfo5.setCoverUrl("https://ichef.bbci.co.uk/news/320/cpsprodpb/AAA7/production/_103778634_cloud.jpg");
+        videoInfo5.setUserHandle("@monika.sharma");
+        videoInfo5.setTitle("When did you last cry in front of someone?");
+        videoInfo5.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
         videoInfo5.setUrl("https://androidwave.com/media/androidwave-video-5.mp4");
         videoInfoList.add(videoInfo);
         videoInfoList.add(videoInfo2);

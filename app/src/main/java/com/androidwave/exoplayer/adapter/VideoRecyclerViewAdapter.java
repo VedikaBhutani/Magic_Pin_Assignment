@@ -110,6 +110,7 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
             parent.setTag(this);
             VideoInfo videoInfo = mInfoList.get(position);
             textViewTitle.setText(videoInfo.getTitle());
+            userHandle.setText(videoInfo.getUserHandle());
             Glide.with(itemView.getContext())
                     .load(videoInfo.getCoverUrl()).apply(new RequestOptions().placeholder(R.drawable.ic_user).error(R.drawable.ic_user))
                     .into(mCover);
