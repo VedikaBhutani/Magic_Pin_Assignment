@@ -27,8 +27,10 @@
         android:id="@+id/imageView"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/video_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
         app:srcCompat="@drawable/ic_user" />
