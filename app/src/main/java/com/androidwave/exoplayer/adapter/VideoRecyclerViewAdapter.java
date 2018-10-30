@@ -34,10 +34,6 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
         mInfoList = infoList;
     }
 
-    public void setCallback(Callback callback) {
-        mCallback = callback;
-    }
-
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -75,11 +71,6 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
         }
     }
 
-    public void addItems(List<VideoInfo> videoInfoList) {
-        mInfoList = videoInfoList;
-        notifyDataSetChanged();
-    }
-
 
     public interface Callback {
         void onRepoEmptyViewRetryClick();
@@ -100,12 +91,14 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
         @BindView(R.id.video_layout)
         public FrameLayout videoLayout;
         @BindView(R.id.cover)
-        ImageView mCover;
+        public ImageView mCover;
+        public final View parent;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            parent = itemView;
         }
 
         protected void clear() {
@@ -114,13 +107,12 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
 
         public void onBind(int position) {
             super.onBind(position);
-
+            parent.setTag(this);
             VideoInfo videoInfo = mInfoList.get(position);
             textViewTitle.setText(videoInfo.getTitle());
             Glide.with(itemView.getContext())
                     .load(videoInfo.getCoverUrl()).apply(new RequestOptions().placeholder(R.drawable.ic_user).error(R.drawable.ic_user))
                     .into(mCover);
-
         }
     }
 

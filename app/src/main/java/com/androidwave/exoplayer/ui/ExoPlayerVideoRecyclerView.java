@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.androidwave.exoplayer.R;
+import com.androidwave.exoplayer.adapter.VideoRecyclerViewAdapter;
 import com.androidwave.exoplayer.model.VideoInfo;
 import com.androidwave.exoplayer.utils.VideoPlayerConfig;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -52,6 +54,7 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
     SimpleExoPlayer player;
     //surface view for playing video
     private PlayerView videoSurfaceView;
+    private ImageView mCoverImage;
     private Context appContext;
 
 
@@ -121,6 +124,7 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
             parent.removeViewAt(index);
             addedVideo = false;
         }
+
     }
 
     //play the video in the row
@@ -163,11 +167,13 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
             return;
         }
 
-        ViewHolder holder = (ViewHolder) child.getTag();
+        VideoRecyclerViewAdapter.ViewHolder holder
+                = (VideoRecyclerViewAdapter.ViewHolder) child.getTag();
         if (holder == null) {
             playPosition = -1;
             return;
         }
+        mCoverImage = holder.mCover;
         FrameLayout frameLayout = holder.itemView.findViewById(R.id.video_layout);
         frameLayout.addView(videoSurfaceView);
         addedVideo = true;
@@ -175,10 +181,11 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
         videoSurfaceView.requestFocus();
         // Bind the player to the view.
         videoSurfaceView.setPlayer(player);
-       // float currentvolume = player.getVolume();
+
         // Measures bandwidth during playback. Can be null if not required.
         DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
         // Produces DataSource instances through which media data is loaded.
+
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(appContext,
                 Util.getUserAgent(appContext, "android_wave_list"), defaultBandwidthMeter);
         // This is the MediaSource representing the media to be played.
@@ -220,9 +227,11 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
         Point point = new Point();
         display.getSize(point);
         videoSurfaceDefaultHeight = point.x;
+
         screenDefaultHeight = point.y;
         videoSurfaceView = new PlayerView(appContext);
         videoSurfaceView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
+
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         TrackSelection.Factory videoTrackSelectionFactory =
                 new AdaptiveTrackSelection.Factory(bandwidthMeter);
@@ -234,6 +243,7 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
                 VideoPlayerConfig.MAX_BUFFER_DURATION,
                 VideoPlayerConfig.MIN_PLAYBACK_START_BUFFER,
                 VideoPlayerConfig.MIN_PLAYBACK_RESUME_BUFFER, -1, true);
+
         // 2. Create the player
         player = ExoPlayerFactory.newSimpleInstance(appContext, trackSelector, loadControl);
         // Bind the player to the view.
@@ -264,7 +274,6 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
             @Override
             public void onChildViewDetachedFromWindow(View view) {
                 if (addedVideo && rowParent != null && rowParent.equals(view)) {
-
                     removeVideoView(videoSurfaceView);
                     playPosition = -1;
                     videoSurfaceView.setVisibility(INVISIBLE);
@@ -293,23 +302,21 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
                 switch (playbackState) {
 
                     case Player.STATE_BUFFERING:
-                        videoSurfaceView.setAlpha(0.5f);
+                        //   videoSurfaceView.setAlpha(0.5f);
                         break;
                     case Player.STATE_ENDED:
-                        //   status = PlaybackStatus.STOPPED;
                         player.seekTo(0);
                         break;
                     case Player.STATE_IDLE:
-                        //    status = PlaybackStatus.IDLE;
+
                         break;
                     case Player.STATE_READY:
                         videoSurfaceView.setVisibility(VISIBLE);
-                        //    status = playWhenReady ? PlaybackStatus.PLAYING : PlaybackStatus.PAUSED;
-                        //   videoSurfaceView.setOnClickListener(this);
                         videoSurfaceView.setAlpha(1);
+                        mCoverImage.setVisibility(GONE);
+
                         break;
                     default:
-                        //   status = PlaybackStatus.IDLE;
                         break;
                 }
             }
@@ -357,7 +364,6 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
     public void onRestartPlayer() {
         if (videoSurfaceView == null) {
             playPosition = -1;
-            //    videoSurfaceView = PlayerView.getInstance(appContext);
             playVideo();
         }
     }
