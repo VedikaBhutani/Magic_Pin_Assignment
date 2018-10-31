@@ -127,4 +127,11 @@ public class MainActivity extends AppCompatActivity {
         });
         super.onResume();
     }
+
+    @Override
+    protected void onDestroy() {
+        if(recyclerViewFeed!=null)
+        recyclerViewFeed.onRelease();
+        super.onDestroy();
+    }
 }

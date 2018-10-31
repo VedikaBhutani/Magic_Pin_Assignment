@@ -27,7 +27,6 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
     public static final int VIEW_TYPE_EMPTY = 0;
     public static final int VIEW_TYPE_NORMAL = 1;
 
-    private Callback mCallback;
     private List<VideoInfo> mInfoList;
 
     public VideoRecyclerViewAdapter(List<VideoInfo> infoList) {
@@ -72,9 +71,6 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
     }
 
 
-    public interface Callback {
-        void onRepoEmptyViewRetryClick();
-    }
 
     public void onRelease() {
         if (mInfoList != null) {
@@ -138,8 +134,7 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolde
 
         @OnClick(R.id.btn_retry)
         void onRetryClick() {
-            if (mCallback != null)
-                mCallback.onRepoEmptyViewRetryClick();
+
         }
     }
 }
