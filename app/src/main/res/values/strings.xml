@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Exo Player in RecyclerView</string>
+    <string name="app_name">Exo Player</string>
     <!--empty state-->
     <string name="empty_screen">Oops!! An unexpected error occurred</string>
     <string name="please_retry">Please retry after sometime</string>

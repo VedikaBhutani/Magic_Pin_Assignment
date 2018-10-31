@@ -46,7 +46,7 @@ import com.google.android.exoplayer2.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExoPlayerVideoRecyclerView extends RecyclerView {
+public class ExoPlayerRecyclerView extends RecyclerView {
 
     private List<VideoInfo> videoInfoList = new ArrayList<>();
     private int videoSurfaceDefaultHeight = 0;
@@ -71,7 +71,7 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
      *
      * @param context
      */
-    public ExoPlayerVideoRecyclerView(Context context) {
+    public ExoPlayerRecyclerView(Context context) {
         super(context);
         initialize(context);
     }
@@ -82,8 +82,8 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
      * @param context
      * @param attrs
      */
-    public ExoPlayerVideoRecyclerView(Context context,
-                                      AttributeSet attrs) {
+    public ExoPlayerRecyclerView(Context context,
+                                 AttributeSet attrs) {
         super(context, attrs);
         initialize(context);
     }
@@ -95,9 +95,9 @@ public class ExoPlayerVideoRecyclerView extends RecyclerView {
      * @param attrs
      * @param defStyleAttr
      */
-    public ExoPlayerVideoRecyclerView(Context context,
-                                      AttributeSet attrs,
-                                      int defStyleAttr) {
+    public ExoPlayerRecyclerView(Context context,
+                                 AttributeSet attrs,
+                                 int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initialize(context);
     }

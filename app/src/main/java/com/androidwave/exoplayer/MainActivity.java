@@ -11,7 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.androidwave.exoplayer.adapter.VideoRecyclerViewAdapter;
 import com.androidwave.exoplayer.model.VideoInfo;
-import com.androidwave.exoplayer.ui.ExoPlayerVideoRecyclerView;
+import com.androidwave.exoplayer.ui.ExoPlayerRecyclerView;
 import com.androidwave.exoplayer.utils.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import static android.widget.LinearLayout.VERTICAL;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerViewFeed)
-    ExoPlayerVideoRecyclerView recyclerViewFeed;
+    ExoPlayerRecyclerView recyclerViewFeed;
 
     private List<VideoInfo> videoInfoList = new ArrayList<>();
     private VideoRecyclerViewAdapter mAdapter;
@@ -62,36 +62,37 @@ public class MainActivity extends AppCompatActivity {
         videoInfo.setId(1);
         videoInfo.setUserHandle("@h.pandya");
         videoInfo.setTitle("Do you think the concept of marriage will no longer exist in the future?");
-        videoInfo.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
+        videoInfo.setCoverUrl("https://androidwave.com/media/images/exo-player-in-recyclerview-in-android-1.png");
         videoInfo.setUrl("https://androidwave.com/media/androidwave-video-1.mp4");
 
         VideoInfo videoInfo2 = new VideoInfo();
         videoInfo2.setId(2);
         videoInfo2.setUserHandle("@hardik.patel");
         videoInfo2.setTitle("If my future husband doesn't cook food as good as my mother should I scold him?");
-        videoInfo2.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
+        videoInfo2.setCoverUrl("https://androidwave.com/media/images/exo-player-in-recyclerview-in-android-2.png");
         videoInfo2.setUrl("https://androidwave.com/media/androidwave-video-2.mp4");
 
         VideoInfo videoInfo3 = new VideoInfo();
         videoInfo3.setId(3);
         videoInfo3.setUserHandle("@arun.gandhi");
         videoInfo3.setTitle("Give your opinion about the Ayodhya temple controversy.");
-        videoInfo3.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
+        videoInfo3.setCoverUrl("https://androidwave.com/media/images/exo-player-in-recyclerview-in-android-3.png");
         videoInfo3.setUrl("https://androidwave.com/media/androidwave-video-3.mp4");
 
         VideoInfo videoInfo4 = new VideoInfo();
         videoInfo4.setId(4);
         videoInfo4.setUserHandle("@sachin.patel");
         videoInfo4.setTitle("When did kama founders find sex offensive to Indian traditions");
-        videoInfo4.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
+        videoInfo4.setCoverUrl("https://androidwave.com/media/images/exo-player-in-recyclerview-in-android-4.png");
         videoInfo4.setUrl("https://androidwave.com/media/androidwave-video-6.mp4");
 
         VideoInfo videoInfo5 = new VideoInfo();
         videoInfo5.setId(5);
         videoInfo5.setUserHandle("@monika.sharma");
         videoInfo5.setTitle("When did you last cry in front of someone?");
-        videoInfo5.setCoverUrl("https://3.bp.blogspot.com/-1y2UGo154jA/VhLtglNlFJI/AAAAAAAAB2I/lTcMX5Lmq10/s1600/Funny-whatsapp-dp-images-600x450.jpg");
+        videoInfo5.setCoverUrl("https://androidwave.com/media/images/exo-player-in-recyclerview-in-android-5.png");
         videoInfo5.setUrl("https://androidwave.com/media/androidwave-video-5.mp4");
+
         videoInfoList.add(videoInfo);
         videoInfoList.add(videoInfo2);
         videoInfoList.add(videoInfo3);
